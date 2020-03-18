@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Pool Assistant</string>
+    <string name="profile">Profile</string>
+    <string name="logout3">Logout</string>
+    <string name="status">Status</string>
+    <string name="account">Account</string>
+    <string name="order_history">Order History</string>
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login1">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="don_t_have_an_account">Register</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register_btn">Register</string>
+    <string name="have_an_account">Login</string>
+</resources>
