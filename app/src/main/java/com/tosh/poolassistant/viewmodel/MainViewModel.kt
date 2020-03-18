@@ -1,6 +1,7 @@
 package com.tosh.poolassistant.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tosh.poolassistant.model.database.UserEntity
@@ -10,6 +11,7 @@ import com.tosh.poolassistant.util.addToSharedPreferences
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application) : BaseViewModel(application) {
 
@@ -55,48 +57,17 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         return loginResponse
     }
 
-    fun userRegister(name: String,
-                     phone: String,
-                     password: String,
-                     confirmPassword: String): LiveData<String> {
-        val registerResponse = MutableLiveData<String>()
-
-        disposable.add(
-            client.userRegister(name,phone,password,confirmPassword)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    {
-                        registerResponse.value = it.message
-                        if (it.message == "successful") {
-                            for (user in it.user) {
-                                val newUser = UserEntity(
-                                    id = user.id,
-                                    name = user.name,
-                                    phone = user.phone
-                                )
-
-                                insert(newUser)
-                                addToSharedPreferences(
-                                    getApplication(),
-                                    newUser.phone
-                                )
-                            }
-                        } else {
-                            registerResponse.value = it.message
-                        }
-
-                    },
-                    {
-                        // add error handling
-                    }
-                )
-        )
-
-        return registerResponse
-    }
-
     fun insert(userEntity: UserEntity) {
         repository.insert(userEntity)
+    }
+
+    fun deleteUser() {
+        launch {
+            repository.deleteUser()
+        }
+    }
+
+    fun getUserDetails(): LiveData<List<UserEntity>> {
+        return repository.getUserDetails()
     }
 }

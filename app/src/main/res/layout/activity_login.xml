@@ -42,11 +42,11 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/email_login"
+                android:id="@+id/phone_login"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
+                android:hint="@string/phone"
+                android:inputType="phone"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -68,19 +68,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_forgotPassword"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="37dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="18dp"
-            android:text="@string/forgot_password"
-            android:textColor="#000"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:textAllCaps="false"/>
-
-        <com.google.android.material.button.MaterialButton
             android:id="@+id/login_btn"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="200dp"
@@ -90,18 +77,6 @@
             android:textSize="15sp"
             android:textStyle="bold"
             app:cornerRadius="15dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/login_register_btn"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/don_t_have_an_account"
-            android:textColor="#000"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:layout_marginTop="18dp"/>
 
 
     </LinearLayout>

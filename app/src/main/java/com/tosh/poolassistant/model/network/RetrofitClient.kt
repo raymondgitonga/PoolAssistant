@@ -2,7 +2,6 @@ package com.tosh.poolassistant.model.network
 
 import com.google.gson.GsonBuilder
 import com.tosh.poolassistant.model.LoginResponse
-import com.tosh.poolassistant.model.RegisterResponse
 import com.tosh.poolassistant.util.Constants.AUTH_BASE_URL
 import io.reactivex.Single
 import okhttp3.OkHttpClient
@@ -39,9 +38,5 @@ class RetrofitClient {
 
     fun userLogin(phone: String, password: String): Single<LoginResponse> {
         return  poolerAuth.userLogin(phone, password)
-    }
-
-    fun userRegister(name: String, phone: String, password: String, confirmPassword: String): Single<RegisterResponse> {
-        return poolerAuth.userRegister(name, phone, password, confirmPassword)
     }
 }
