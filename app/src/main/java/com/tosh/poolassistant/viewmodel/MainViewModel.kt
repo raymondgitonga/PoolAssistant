@@ -23,8 +23,8 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     val loading = MutableLiveData<Boolean>()
     val orders: MutableLiveData<List<Order>> = MutableLiveData()
 
-    fun refresh(){
-        getOrders()
+    fun refresh(orderNumber: Int?){
+        getOrders(orderNumber)
     }
 
     fun userLogin(phone: String, password: String): LiveData<String> {
@@ -79,7 +79,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         return repository.getUserDetails()
     }
 
-    private fun getOrders(): LiveData<List<Order>>{
+    private fun getOrders(orderNumber: Int?): LiveData<List<Order>>{
         loading.value = true
         disposable.add(
             client.getOrders()
@@ -87,8 +87,16 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     {
-                        orders.value = it
-                        loading.value = false
+                        it.forEach {order->
+                            if (order.orderNumber == orderNumber){
+                                orders.value = listOf(order)
+                                loading.value = false
+                            }else{
+                                orders.value = it
+                                loading.value = false
+                            }
+                        }
+
                     },
                     {
                         Log.e("ORDER-->", " ${it}")

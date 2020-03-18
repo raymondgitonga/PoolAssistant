@@ -1,21 +1,25 @@
 package com.tosh.poolassistant.view.adapter
 
+import android.content.Context
 import android.graphics.Color
-import android.util.Log
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.tosh.poolassistant.R
 import com.tosh.poolassistant.model.Order
+import com.tosh.poolassistant.view.fragment.OrderDetailsFragment
+import com.tosh.poolassistant.view.fragment.OrderSummaryFragment
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class OrderAdapter(private val orderList: ArrayList<Order>) :
+class OrderAdapter(private val orderList: ArrayList<Order>, val context: Context) :
     RecyclerView.Adapter<OrderAdapter.OrderView>() {
 
     fun updateOrdersList(newOrdersList: List<Order>) {
@@ -53,7 +57,29 @@ class OrderAdapter(private val orderList: ArrayList<Order>) :
         }
 
         holder.itemView.setOnClickListener {
-           Log.e("ORDER NUMBER", "${order.orderNumber}")
+            if (order.state == "pending") {
+                val fragmentOrderDetails = OrderDetailsFragment()
+                val fragmentManager = (context as AppCompatActivity).supportFragmentManager
+                val fragmentTransaction = fragmentManager.beginTransaction()
+
+                val bundle = Bundle()
+                bundle.putInt("ORDER_ID", order.orderNumber)
+                fragmentOrderDetails.arguments = bundle
+                fragmentTransaction.replace(R.id.details_fragment, fragmentOrderDetails)
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }else{
+                val fragmentOrderSummary = OrderSummaryFragment()
+                val fragmentManager = (context as AppCompatActivity).supportFragmentManager
+                val fragmentTransaction = fragmentManager.beginTransaction()
+
+                val bundle = Bundle()
+                bundle.putInt("ORDER_ID", order.orderNumber)
+                fragmentOrderSummary.arguments = bundle
+                fragmentTransaction.replace(R.id.details_fragment, fragmentOrderSummary)
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
         }
     }
 

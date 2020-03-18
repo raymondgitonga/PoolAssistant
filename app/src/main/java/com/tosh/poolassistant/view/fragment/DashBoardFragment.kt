@@ -16,7 +16,9 @@ import kotlinx.android.synthetic.main.fragment_dash_board.*
 class DashBoardFragment : Fragment() {
 
     private lateinit var viewModel : MainViewModel
-    private val ordersListAdapter = OrderAdapter(arrayListOf())
+    private lateinit var ordersListAdapter: OrderAdapter
+
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -26,9 +28,11 @@ class DashBoardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        ordersListAdapter = OrderAdapter(arrayListOf(), context!!)
+
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        viewModel.refresh()
+        viewModel.refresh(null)
 
         ordersList.apply {
             layoutManager = LinearLayoutManager(context)
@@ -39,7 +43,7 @@ class DashBoardFragment : Fragment() {
             ordersList.visibility = View.GONE
             listError.visibility = View.GONE
             loadingView.visibility = View.VISIBLE
-            viewModel.refresh()
+            viewModel.refresh(null)
             refreshLayout.isRefreshing = false
         }
 

@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.fragment.OrderDetailsFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/orderNumberTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order Number: 123456"
+        android:textSize="15sp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="12dp"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/orderTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="Total: 4000"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="12dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/orderDetailsRv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+</LinearLayout>

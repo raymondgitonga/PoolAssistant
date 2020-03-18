@@ -1,5 +1,6 @@
 package com.tosh.poolassistant.view.activity
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,10 +21,9 @@ import com.tosh.poolassistant.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity() : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private val dashboardFragment =
-        DashBoardFragment()
+    private val dashboardFragment = DashBoardFragment()
     private var mainViewModel: MainViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
