@@ -1,10 +1,9 @@
 package com.tosh.poolassistant.model.network
 
 import com.tosh.poolassistant.model.LoginResponse
+import com.tosh.poolassistant.model.Order
 import io.reactivex.Single
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface RetrofitApi {
     @FormUrlEncoded
@@ -13,4 +12,7 @@ interface RetrofitApi {
         @Field("phone") phone: String,
         @Field("password") password: String
     ): Single<LoginResponse>
+
+    @GET("/api/v1/cart/all")
+    fun getOrders(): Single<List<Order>>
 }

@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tosh.poolassistant.model.Order
 import com.tosh.poolassistant.model.database.UserEntity
 import com.tosh.poolassistant.model.network.RetrofitClient
 import com.tosh.poolassistant.model.repository.MainRepository
@@ -18,6 +19,13 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     private val disposable = CompositeDisposable()
     private val client = RetrofitClient()
     private val repository: MainRepository = MainRepository(application)
+    val loadError = MutableLiveData<Boolean>()
+    val loading = MutableLiveData<Boolean>()
+    val orders: MutableLiveData<List<Order>> = MutableLiveData()
+
+    fun refresh(){
+        getOrders()
+    }
 
     fun userLogin(phone: String, password: String): LiveData<String> {
         val loginResponse = MutableLiveData<String>()
@@ -69,5 +77,33 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     fun getUserDetails(): LiveData<List<UserEntity>> {
         return repository.getUserDetails()
+    }
+
+    private fun getOrders(): LiveData<List<Order>>{
+        loading.value = true
+        disposable.add(
+            client.getOrders()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
+                        orders.value = it
+                        loading.value = false
+                    },
+                    {
+                        Log.e("ORDER-->", " ${it}")
+                        loadError.value = true
+                        loading.value = false
+                    }
+                )
+        )
+
+        return orders
+
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposable.clear()
     }
 }

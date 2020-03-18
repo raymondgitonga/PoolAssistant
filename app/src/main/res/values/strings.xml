@@ -20,4 +20,6 @@
     <string name="register_btn">Register</string>
     <string name="have_an_account">Login</string>
     <string name="phone">Phone Number</string>
+    <string name="error_occured_while_loading">Error occured while loading</string>
+    <string name="_01_january_1990">01/09/1990</string>
 </resources>

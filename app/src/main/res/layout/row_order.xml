@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    android:layout_marginBottom="10dp"
+    android:id="@+id/rowOrderLl"
+    android:background="@android:color/darker_gray"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/orderNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order number: 12345"
+        android:textColor="@android:color/black"
+        android:layout_alignParentStart="true"
+        android:textSize="15sp"/>
+
+    <FrameLayout
+        android:id="@+id/layoutDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:background="@drawable/round_white"
+        android:layout_alignParentEnd="true"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_date" />
+
+        <TextView
+            android:id="@+id/deliverDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="15sp"
+            android:text="@string/_01_january_1990"
+            android:textColor="@android:color/black"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/orderCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cost: 4000"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/orderNumber"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item Quantity: 8"
+        android:layout_below="@+id/orderNumber"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="50dp"
+        android:textSize="15sp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/orderStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/quantity"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:text="PENDING"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+
+
+</RelativeLayout>
