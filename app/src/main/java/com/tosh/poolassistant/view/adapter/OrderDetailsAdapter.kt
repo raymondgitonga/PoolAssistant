@@ -1,5 +1,6 @@
 package com.tosh.poolassistant.view.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.tosh.poolassistant.R
 import com.tosh.poolassistant.model.CartItem
+import com.tosh.poolassistant.view.activity.MainActivity
 
 class OrderDetailsAdapter(private val orderModel: List<CartItem>) :
     RecyclerView.Adapter<OrderDetailsAdapter.OrderDetailsView>() {
@@ -28,6 +30,7 @@ class OrderDetailsAdapter(private val orderModel: List<CartItem>) :
         holder.productExtra.text = cart.extraName
         holder.productStore.text = cart.vendorName
         holder.productPrice.text = cart.productPrice.toString()
+
     }
 
     class OrderDetailsView(itemView: View, var order: List<CartItem>) :

@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".view.fragment.OrderDetailsFragment"
+    android:background="@android:color/white"
     android:layout_marginTop="8dp">
 
     <TextView

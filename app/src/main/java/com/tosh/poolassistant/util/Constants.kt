@@ -7,4 +7,5 @@ object Constants {
 
     const val SHARED_PHONE = "phone"
     const val SHARED_DEFAULT = "default"
+    const val SHARED_CHECKOUT = "checkout"
 }

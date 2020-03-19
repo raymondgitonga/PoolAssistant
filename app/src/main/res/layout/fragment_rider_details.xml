@@ -1,13 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.RiderDetailsFragment">
-    
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    tools:context=".view.fragment.RiderDetailsFragment"
+    android:background="@android:color/white">
 
-</FrameLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivProfilePicture"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/profile_picture"
+        app:civ_border_width="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/driverName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tosh_gitonga"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/ivProfilePicture"
+       android:layout_centerHorizontal="true"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/driverPlate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KCJT 001V"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/driverName"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/driverNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0729320243"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/driverPlate"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/callTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:layout_below="@+id/driverNumber"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/completeRiderBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="@string/complete_order"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

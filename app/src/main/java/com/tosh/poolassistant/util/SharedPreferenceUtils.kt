@@ -3,6 +3,7 @@ package com.tosh.poolassistant.util
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import com.tosh.poolassistant.util.Constants.SHARED_CHECKOUT
 import com.tosh.poolassistant.util.Constants.SHARED_DEFAULT
 import com.tosh.poolassistant.util.Constants.SHARED_PHONE
 
