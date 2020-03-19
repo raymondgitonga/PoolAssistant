@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tosh.poolassistant.model.CartItem
 import com.tosh.poolassistant.model.Order
 import com.tosh.poolassistant.model.database.UserEntity
 import com.tosh.poolassistant.model.network.RetrofitClient
@@ -23,8 +24,8 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     val loading = MutableLiveData<Boolean>()
     val orders: MutableLiveData<List<Order>> = MutableLiveData()
 
-    fun refresh(orderNumber: Int?){
-        getOrders(orderNumber)
+    fun refresh() {
+        getOrders()
     }
 
     fun userLogin(phone: String, password: String): LiveData<String> {
@@ -79,7 +80,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         return repository.getUserDetails()
     }
 
-    private fun getOrders(orderNumber: Int?): LiveData<List<Order>>{
+    private fun getOrders(): LiveData<List<Order>> {
         loading.value = true
         disposable.add(
             client.getOrders()
@@ -87,19 +88,10 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     {
-                        it.forEach {order->
-                            if (order.orderNumber == orderNumber){
-                                orders.value = listOf(order)
-                                loading.value = false
-                            }else{
-                                orders.value = it
-                                loading.value = false
-                            }
-                        }
-
+                        orders.value = it
+                        loading.value = false
                     },
                     {
-                        Log.e("ORDER-->", " ${it}")
                         loadError.value = true
                         loading.value = false
                     }
@@ -107,6 +99,31 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         )
 
         return orders
+
+    }
+
+    fun getSingleOrders(orderNumber: Long): MutableLiveData<List<CartItem>>{
+        val orderItem: MutableLiveData<List<CartItem>> = MutableLiveData()
+        loading.value = true
+        disposable.add(
+            client.getSingleOrder(orderNumber)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
+                        it.forEach{order->
+                            orderItem.value = order.cartItems
+                        }
+                        loading.value = false
+                    },
+                    {
+                        loadError.value = true
+                        loading.value = false
+                    }
+                )
+        )
+
+        return orderItem
 
     }
 

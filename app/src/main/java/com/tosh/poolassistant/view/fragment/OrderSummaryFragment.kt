@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_order_summary.*
  */
 class OrderSummaryFragment : Fragment() {
 
-    private var orderNumber: Int? = null
+    private var orderNumber: Long? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -24,7 +24,7 @@ class OrderSummaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        orderNumber = arguments?.getInt("ORDER_ID")
+        orderNumber = arguments?.getLong("ORDER_ID")
     }
 
 }

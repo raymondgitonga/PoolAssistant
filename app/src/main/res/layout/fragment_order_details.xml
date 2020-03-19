@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.fragment.OrderDetailsFragment">
+    tools:context=".view.fragment.OrderDetailsFragment"
+    android:layout_marginTop="8dp">
 
     <TextView
         android:id="@+id/orderNumberTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Order Number: 123456"
         android:textSize="15sp"
         android:layout_gravity="center_horizontal"
         android:textColor="@android:color/black"
@@ -21,16 +21,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:text="Total: 4000"
         android:layout_gravity="center_horizontal"
         android:textColor="@android:color/black"
         android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:id="@+id/checkedValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/orderDetailsRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progressDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:indeterminateTint="@color/colorPrimaryDark"/>
+    <TextView
+        android:id="@+id/errorDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/error_occured_while_loading"
+        android:textColor="#000"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"/>
 
+    <Button
+        android:id="@+id/completeOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Complete"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"/>
 
 </LinearLayout>

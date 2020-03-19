@@ -7,7 +7,7 @@ data class Order(
     val deliveryCost: Double,
     val latitude: String,
     val longitude: String,
-    val orderNumber: Int,
+    val orderNumber: Long,
     val state: String,
     val total: Double,
     val userId: Int

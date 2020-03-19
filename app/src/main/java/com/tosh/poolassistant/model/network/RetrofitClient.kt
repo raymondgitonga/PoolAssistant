@@ -54,4 +54,8 @@ class RetrofitClient {
     fun getOrders(): Single<List<Order>>{
         return orderApi.getOrders()
     }
+
+    fun getSingleOrder(orderNumber: Long): Single<List<Order>>{
+        return orderApi.getSingleOrder(orderNumber)
+    }
 }

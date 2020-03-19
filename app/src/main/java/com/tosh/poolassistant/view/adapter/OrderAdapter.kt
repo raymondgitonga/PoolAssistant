@@ -39,6 +39,7 @@ class OrderAdapter(private val orderList: ArrayList<Order>, val context: Context
     override fun onBindViewHolder(holder: OrderView, position: Int) {
         val order = orderList[position]
         val date = order.createdDate
+        val itemId = 0
 
         val formatDate: Date = SimpleDateFormat("yyyyMMddHHmmss").parse(date)
         val targetFormat = SimpleDateFormat("dd/MM/yyyy")
@@ -63,7 +64,8 @@ class OrderAdapter(private val orderList: ArrayList<Order>, val context: Context
                 val fragmentTransaction = fragmentManager.beginTransaction()
 
                 val bundle = Bundle()
-                bundle.putInt("ORDER_ID", order.orderNumber)
+                bundle.putLong("ORDER_ID", order.orderNumber)
+                bundle.putDouble("ORDER_COST", order.cost)
                 fragmentOrderDetails.arguments = bundle
                 fragmentTransaction.replace(R.id.details_fragment, fragmentOrderDetails)
                 fragmentTransaction.addToBackStack(null)
@@ -74,7 +76,7 @@ class OrderAdapter(private val orderList: ArrayList<Order>, val context: Context
                 val fragmentTransaction = fragmentManager.beginTransaction()
 
                 val bundle = Bundle()
-                bundle.putInt("ORDER_ID", order.orderNumber)
+                bundle.putLong("ORDER_ID", order.orderNumber)
                 fragmentOrderSummary.arguments = bundle
                 fragmentTransaction.replace(R.id.details_fragment, fragmentOrderSummary)
                 fragmentTransaction.addToBackStack(null)

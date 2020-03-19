@@ -15,4 +15,8 @@ interface RetrofitApi {
 
     @GET("/api/v1/cart/all")
     fun getOrders(): Single<List<Order>>
+
+    @GET("/api/v1/cart/{order_number}")
+    fun getSingleOrder(@Path("order_number") orderNumber: Long): Single<List<Order>>
+
 }

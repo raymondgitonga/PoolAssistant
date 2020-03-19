@@ -32,7 +32,7 @@ class DashBoardFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        viewModel.refresh(null)
+        viewModel.refresh()
 
         ordersList.apply {
             layoutManager = LinearLayoutManager(context)
@@ -43,7 +43,7 @@ class DashBoardFragment : Fragment() {
             ordersList.visibility = View.GONE
             listError.visibility = View.GONE
             loadingView.visibility = View.VISIBLE
-            viewModel.refresh(null)
+            viewModel.refresh()
             refreshLayout.isRefreshing = false
         }
 
