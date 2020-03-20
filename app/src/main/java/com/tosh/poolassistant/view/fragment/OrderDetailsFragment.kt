@@ -13,13 +13,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.tosh.poolassistant.R
-import com.tosh.poolassistant.view.activity.MainActivity
 import com.tosh.poolassistant.view.adapter.OrderDetailsAdapter
 import com.tosh.poolassistant.viewmodel.MainViewModel
-import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.fragment_dash_board.*
 import kotlinx.android.synthetic.main.fragment_order_details.*
-import kotlinx.coroutines.launch
 
 class OrderDetailsFragment : Fragment() {
 
