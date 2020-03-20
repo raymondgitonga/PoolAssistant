@@ -12,9 +12,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.tosh.poolassistant.R
+import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_rider_details.*
+import kotlin.math.cos
 
 class RiderDetailsFragment : Fragment() {
+
+    private var orderNumber: Long? = null
+    private var cost: Double? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -23,8 +28,13 @@ class RiderDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        orderNumber = arguments?.getLong("ORDER_ID")
+        cost = arguments?.getDouble("ORDER_COST")
+
+        activity!!.title = "Partner Details"
         callHelpLine()
-        initorderSummaryFragment()
+        initorderSummaryFragment(orderNumber!!, cost!!)
     }
 
     private fun callHelpLine(){
@@ -35,7 +45,7 @@ class RiderDetailsFragment : Fragment() {
         }
     }
 
-    private fun initorderSummaryFragment(){
+    private fun initorderSummaryFragment(orderNumber: Long, orderCost:Double){
         completeRiderBtn.setOnClickListener {
             val emptyDialog = MaterialAlertDialogBuilder(context)
                 .setTitle("Complete")
@@ -44,6 +54,10 @@ class RiderDetailsFragment : Fragment() {
                 val fragmentOrderSummary = OrderSummaryFragment()
                 val fragmentManager = (context as AppCompatActivity).supportFragmentManager
                 val fragmentTransaction = fragmentManager.beginTransaction()
+                val bundle = Bundle()
+                bundle.putLong("ORDER_ID", orderNumber)
+                bundle.putDouble("ORDER_COST", orderCost)
+                fragmentOrderSummary.arguments = bundle
                 fragmentTransaction.replace(R.id.details_fragment, fragmentOrderSummary)
                 fragmentTransaction.commit()
             }

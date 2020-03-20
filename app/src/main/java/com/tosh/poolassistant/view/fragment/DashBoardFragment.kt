@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.tosh.poolassistant.R
 import com.tosh.poolassistant.view.adapter.OrderAdapter
 import com.tosh.poolassistant.viewmodel.MainViewModel
+import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_dash_board.*
 
 class DashBoardFragment : Fragment() {
@@ -27,6 +28,8 @@ class DashBoardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        activity!!.title = "Dashboard"
 
         ordersListAdapter = OrderAdapter(arrayListOf(), context!!)
 

@@ -16,6 +16,7 @@ import com.tosh.poolassistant.R
 import com.tosh.poolassistant.view.activity.MainActivity
 import com.tosh.poolassistant.view.adapter.OrderDetailsAdapter
 import com.tosh.poolassistant.viewmodel.MainViewModel
+import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_dash_board.*
 import kotlinx.android.synthetic.main.fragment_order_details.*
 import kotlinx.coroutines.launch
@@ -40,12 +41,17 @@ class OrderDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        activity!!.title = "Order"
+
         orderNumber = arguments?.getLong("ORDER_ID")
         cost = arguments?.getDouble("ORDER_COST")
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
         initRecyclerView(orderNumber!!, cost!!)
+
+        observeViewModel()
+        initRiderDetailsFragment(orderNumber!!, cost!!)
 
 
     }
@@ -62,9 +68,6 @@ class OrderDetailsFragment : Fragment() {
             orderDetailsAdapter = OrderDetailsAdapter(it)
             orderDetailsRv.adapter = orderDetailsAdapter
         })
-
-        observeViewModel()
-        initRiderDetailsFragment()
     }
 
     private fun observeViewModel() {
@@ -85,7 +88,7 @@ class OrderDetailsFragment : Fragment() {
         })
     }
 
-    private fun initRiderDetailsFragment() {
+    private fun initRiderDetailsFragment(orderNumber: Long, orderCost:Double) {
         completeOrder.setOnClickListener {
             val emptyDialog = MaterialAlertDialogBuilder(context)
                 .setTitle("Proceed")
@@ -94,6 +97,11 @@ class OrderDetailsFragment : Fragment() {
                 val fragmentRiderDetails = RiderDetailsFragment()
                 val fragmentManager = activity!!.supportFragmentManager
                 val fragmentTransaction = fragmentManager.beginTransaction()
+
+                val bundle = Bundle()
+                bundle.putLong("ORDER_ID", orderNumber)
+                bundle.putDouble("ORDER_COST", orderCost)
+                fragmentRiderDetails.arguments = bundle
                 fragmentTransaction.replace(R.id.details_fragment, fragmentRiderDetails)
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
