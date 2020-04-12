@@ -37,8 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/name"
-                android:inputType="text"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" />
+                android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
